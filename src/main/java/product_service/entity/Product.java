@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.Id;
@@ -22,7 +23,8 @@ public class Product {
     )
     @SequenceGenerator(
         name = "product_seq_generator",
-        sequenceName = "product_id_seq"
+        sequenceName = "product_id_seq",
+        allocationSize = 1
     )
     private Long id;
     private String sku;
@@ -31,8 +33,10 @@ public class Product {
     private String category;
     private LocalDate validFrom;
     private LocalDate validUntil;
+    @Column(insertable = false, updatable = false)
     private Instant updatedAt;
     private String updatedBy;
+    @Column(insertable = false, updatable = false)
     private Instant createdAt;
 
     
